@@ -4,8 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 
 import './App.css';
-
-class Review extends Component { // Tạo 1 component để chứa và hiển thị kết quả
+//----------------------- Dưới đây là một component được tạo để lưu và hiển thị ra kết quả -------------------------------
+class Review extends Component { // Tạo 1 component để chứa và hiển thị kết quả tên là Review
   constructor(props) {
     super(props);
 
@@ -17,14 +17,14 @@ class Review extends Component { // Tạo 1 component để chứa và hiển th
   }
 
   componentWillMount() { //----Method của React -_- để gán giá trị đó  
-    const { steps } = this.props;
-    const { name, gender, age } = steps;
+    const { steps } = this.props; //------- Mô Phật tốt nhất là làm step bth đây là gán biến props nha là cái nhận vào từ bên dưới lúc ng dùng nhập chat đó
+    const { name, gender, age } = steps; //---------- lấy giá trị từ steps gán vào name, gender, age
 
-    this.setState({ name, gender, age });
+    this.setState({ name, gender, age }); //--------- lưu giá trị name, gender, age vào state 
   }
-
+//-------------------- render(hiển thị ra dữ liệu qua hàm render) --------------------------
   render() {
-    const { name, gender, age } = this.state;
+    const { name, gender, age } = this.state; //------gán giá trị cho name, gender, age ứng với giá trị lưu trong state 
     return (
       <div style={{ width: '100%' }}>
         <h3>Summary</h3>
@@ -32,7 +32,7 @@ class Review extends Component { // Tạo 1 component để chứa và hiển th
           <tbody>
             <tr>
               <td>Name</td>
-              <td>{name.value}</td>
+              <td>{name.value}</td> 
             </tr>
             <tr>
               <td>Gender</td>
@@ -50,7 +50,7 @@ class Review extends Component { // Tạo 1 component để chứa và hiển th
 }
 
 Review.propTypes = { //-------- Thêm cái này vào để quản lý kiểu dữ liệu
-  steps: PropTypes.object,
+  steps: PropTypes.object, //đây kiểu dữ liệu của tk steps là object nè
 };
 
 Review.defaultProps = { //----- cái này bên React -_- nói thêm nhức não
@@ -58,22 +58,22 @@ Review.defaultProps = { //----- cái này bên React -_- nói thêm nhức não
 };
 //----------------------------Phần này là tạo theme cho botchat------------------
 const theme = {
-  background: '#f5f8fb', 
-  fontFamily: 'Helvetica Neue',
-  headerBgColor: '#EF6C00',
-  headerFontColor: '#fff',
-  headerFontSize: '15px',
-  botBubbleColor: '#EF6C00',
-  botFontColor: '#fff',
-  userBubbleColor: '#fff',
-  userFontColor: '#4a4a4a',
+  background: '#f5f8fb', //màu nền
+  fontFamily: 'Helvetica Neue', //font chữ
+  headerBgColor: '#EF6C00', //màu nền header
+  headerFontColor: '#fff', //màu chữ header
+  headerFontSize: '15px', //font size header
+  botBubbleColor: '#EF6C00', //màu bong bóng chat của bot
+  botFontColor: '#fff', //màu dòng chat của bot
+  userBubbleColor: '#fff', //tương tư bong bóng user
+  userFontColor: '#4a4a4a', //tương tự màu dòng chat user
 };
 //-------------------------------------------------------------------------------
 
 //---------------------------------Dưới này là phần câu lệnh chat của bot--------
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}> //gán theme khai báo ở trên vô nè, màu mè hoa lá cành
       <ChatBot
         headerTitle="Bot bé bỏng xinh đẹp" //------- tên con bot xuất hiện trên chat---
         speechSynthesis={{ enable: true, lang: 'vi'}} //-----Cho bot chat nói, mé a để tiếng Việt hn ko nhận mô, e muốn để tiếng a thì 'en', pháp thì 'fr'
